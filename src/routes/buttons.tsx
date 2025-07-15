@@ -50,6 +50,24 @@ const Buttons = () => {
           Button
         </Button>
       </div>
+      <div className='flex flex-col gap-2'>
+        <Button rounded>Button</Button>
+        <Button style='primary' rounded>
+          Button
+        </Button>
+        <Button style='secondary' rounded>
+          Button
+        </Button>
+        <Button style='success' rounded>
+          Button
+        </Button>
+        <Button style='warning' rounded>
+          Button
+        </Button>
+        <Button style='danger' rounded>
+          Button
+        </Button>
+      </div>
     </div>
   );
 };
