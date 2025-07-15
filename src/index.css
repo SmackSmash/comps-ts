@@ -1,0 +1,7 @@
+@import 'tailwindcss';
+
+@layer {
+  body {
+    @apply bg-cyan-950 text-cyan-50;
+  }
+}
