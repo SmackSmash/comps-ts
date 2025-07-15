@@ -4,7 +4,7 @@ import Button from '../components/Button';
 const Buttons = () => {
   return (
     <div className='p-2'>
-      <Button>Button</Button>
+      <Button primary>Button</Button>
     </div>
   );
 };
