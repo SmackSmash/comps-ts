@@ -3,8 +3,15 @@ import Button from '../components/Button';
 
 const Buttons = () => {
   return (
-    <div className='p-2'>
-      <Button style='primary'>Button</Button>
+    <div className='flex p-2'>
+      <div className='flex flex-col gap-2'>
+        <Button>Button</Button>
+        <Button style='primary'>Button</Button>
+        <Button style='primary'>Button</Button>
+        <Button style='primary'>Button</Button>
+        <Button style='primary'>Button</Button>
+        <Button style='primary'>Button</Button>
+      </div>
     </div>
   );
 };

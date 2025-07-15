@@ -1,14 +1,16 @@
 import type { FC, ReactNode } from 'react';
 
-type style = 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
-
 const Button: FC<{
-  style: style;
+  style?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
   outline?: boolean;
   rounded?: boolean;
   children: ReactNode;
 }> = ({ children }) => {
-  return <button>{children}</button>;
+  return (
+    <button className='cursor-pointer border-4 border-black bg-white px-4 py-2 text-black'>
+      {children}
+    </button>
+  );
 };
 
 export default Button;
