@@ -31,13 +31,9 @@ const Button: FC<{
       computedStyles = defaultStyles;
   }
 
-  if (outline) {
-    computedStyles = twMerge(computedStyles, 'bg-white text-black');
-  }
+  if (outline) computedStyles = twMerge(computedStyles, 'bg-white text-black');
 
-  if (rounded) {
-    computedStyles = twMerge(computedStyles, 'rounded-full');
-  }
+  if (rounded) computedStyles = twMerge(computedStyles, 'rounded-full');
 
   return <button className={computedStyles}>{children}</button>;
 };
