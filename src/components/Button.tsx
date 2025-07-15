@@ -7,7 +7,8 @@ const Button: FC<{
   rounded?: boolean;
   children: ReactNode;
 }> = ({ style, outline, rounded, children }) => {
-  const defaultStyles = 'cursor-pointer border-4 border-black bg-white px-4 py-2 text-black';
+  const defaultStyles =
+    'cursor-pointer border-4 border-black bg-white px-4 py-2 text-black transition duration-50 hover:scale-[1.05] active:scale-100';
   let computedStyles = '';
 
   switch (style) {
