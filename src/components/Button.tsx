@@ -1,11 +1,9 @@
 import type { FC, ReactNode } from 'react';
 
+type style = 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
+
 const Button: FC<{
-  primary?: boolean;
-  secondary?: boolean;
-  success?: boolean;
-  warning?: boolean;
-  danger?: boolean;
+  style: style;
   outline?: boolean;
   rounded?: boolean;
   children: ReactNode;
@@ -14,3 +12,4 @@ const Button: FC<{
 };
 
 export default Button;
+utton;
