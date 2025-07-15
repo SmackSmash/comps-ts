@@ -6,7 +6,7 @@ const Button: FC<{
   outline?: boolean;
   rounded?: boolean;
   children: ReactNode;
-}> = ({ style, children }) => {
+}> = ({ style, outline, children }) => {
   const defaultStyles = 'cursor-pointer border-4 border-black bg-white px-4 py-2 text-black';
   let computedStyles = '';
 
@@ -28,6 +28,10 @@ const Button: FC<{
       break;
     default:
       computedStyles = defaultStyles;
+  }
+
+  if (outline) {
+    computedStyles = twMerge(computedStyles, 'bg-white text-black');
   }
 
   return <button className={computedStyles}>{children}</button>;
