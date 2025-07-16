@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import Button from '../components/Button';
+import { GoBell } from 'react-icons/go';
 
 const Buttons = () => {
   return (
@@ -66,6 +67,26 @@ const Buttons = () => {
         </Button>
         <Button style='danger' rounded>
           Button
+        </Button>
+      </div>
+      <div className='flex flex-col gap-2'>
+        <Button rounded>
+          <GoBell /> Alert!
+        </Button>
+        <Button style='primary' rounded>
+          <GoBell /> Alert!
+        </Button>
+        <Button style='secondary' rounded>
+          <GoBell /> Alert!
+        </Button>
+        <Button style='success' rounded>
+          <GoBell /> Alert!
+        </Button>
+        <Button style='warning' rounded>
+          <GoBell /> Alert!
+        </Button>
+        <Button style='danger' rounded>
+          <GoBell /> Alert!
         </Button>
       </div>
     </div>
