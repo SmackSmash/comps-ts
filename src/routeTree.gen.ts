@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ButtonsRouteImport } from './routes/buttons'
+import { Route as AccordionRouteImport } from './routes/accordion'
 import { Route as IndexRouteImport } from './routes/index'
 
 const ButtonsRoute = ButtonsRouteImport.update({
   id: '/buttons',
   path: '/buttons',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccordionRoute = AccordionRouteImport.update({
+  id: '/accordion',
+  path: '/accordion',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -25,27 +31,31 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/accordion': typeof AccordionRoute
   '/buttons': typeof ButtonsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/accordion': typeof AccordionRoute
   '/buttons': typeof ButtonsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/accordion': typeof AccordionRoute
   '/buttons': typeof ButtonsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/buttons'
+  fullPaths: '/' | '/accordion' | '/buttons'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/buttons'
-  id: '__root__' | '/' | '/buttons'
+  to: '/' | '/accordion' | '/buttons'
+  id: '__root__' | '/' | '/accordion' | '/buttons'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AccordionRoute: typeof AccordionRoute
   ButtonsRoute: typeof ButtonsRoute
 }
 
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/buttons'
       fullPath: '/buttons'
       preLoaderRoute: typeof ButtonsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/accordion': {
+      id: '/accordion'
+      path: '/accordion'
+      fullPath: '/accordion'
+      preLoaderRoute: typeof AccordionRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -70,6 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AccordionRoute: AccordionRoute,
   ButtonsRoute: ButtonsRoute,
 }
 export const routeTree = rootRouteImport
