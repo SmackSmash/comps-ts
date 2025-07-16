@@ -7,7 +7,7 @@ const Button: FC<{
   outline?: boolean;
   rounded?: boolean;
   children: ReactNode;
-  [x: string]: any;
+  [x: string]: unknown;
 }> = ({ className, style, outline, rounded, children, ...rest }) => {
   console.log(className);
   const defaultStyles =
