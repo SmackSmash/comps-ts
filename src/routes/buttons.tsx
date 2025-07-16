@@ -6,7 +6,9 @@ const Buttons = () => {
   return (
     <div className='flex gap-2 p-2'>
       <div className='flex flex-col gap-2'>
-        <Button>Button</Button>
+        <Button onClick={() => console.log('Clicked!')} className='w-40'>
+          Button
+        </Button>
         <Button style='primary'>Button</Button>
         <Button style='secondary'>Button</Button>
         <Button style='success'>Button</Button>
