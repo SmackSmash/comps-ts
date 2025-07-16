@@ -9,10 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as DropdownRouteImport } from './routes/dropdown'
 import { Route as ButtonsRouteImport } from './routes/buttons'
 import { Route as AccordionRouteImport } from './routes/accordion'
 import { Route as IndexRouteImport } from './routes/index'
 
+const DropdownRoute = DropdownRouteImport.update({
+  id: '/dropdown',
+  path: '/dropdown',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ButtonsRoute = ButtonsRouteImport.update({
   id: '/buttons',
   path: '/buttons',
@@ -33,34 +39,45 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/accordion': typeof AccordionRoute
   '/buttons': typeof ButtonsRoute
+  '/dropdown': typeof DropdownRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/accordion': typeof AccordionRoute
   '/buttons': typeof ButtonsRoute
+  '/dropdown': typeof DropdownRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/accordion': typeof AccordionRoute
   '/buttons': typeof ButtonsRoute
+  '/dropdown': typeof DropdownRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/accordion' | '/buttons'
+  fullPaths: '/' | '/accordion' | '/buttons' | '/dropdown'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/accordion' | '/buttons'
-  id: '__root__' | '/' | '/accordion' | '/buttons'
+  to: '/' | '/accordion' | '/buttons' | '/dropdown'
+  id: '__root__' | '/' | '/accordion' | '/buttons' | '/dropdown'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AccordionRoute: typeof AccordionRoute
   ButtonsRoute: typeof ButtonsRoute
+  DropdownRoute: typeof DropdownRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/dropdown': {
+      id: '/dropdown'
+      path: '/dropdown'
+      fullPath: '/dropdown'
+      preLoaderRoute: typeof DropdownRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/buttons': {
       id: '/buttons'
       path: '/buttons'
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AccordionRoute: AccordionRoute,
   ButtonsRoute: ButtonsRoute,
+  DropdownRoute: DropdownRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
