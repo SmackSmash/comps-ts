@@ -14,7 +14,6 @@ const Dropdown: FC<{
 
   useEffect(() => {
     setSelectHeight(selectRef!.current!.clientHeight);
-    console.log(selectHeight);
   }, [selectHeight]);
 
   const handleOptionClick = (option: Option) => {
