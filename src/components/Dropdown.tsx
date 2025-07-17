@@ -3,7 +3,9 @@ import { IoCaretDownSharp } from 'react-icons/io5';
 
 type Option = { label: string | number; value: string | number };
 
-const Dropdown: FC<{ options: Array<Option> }> = ({ options }) => {
+const Dropdown: FC<{ options: Array<Option>; onSelect: (value: string | number) => void }> = ({
+  options
+}) => {
   const [selectedOption, setSelectedOption] = useState<Option | null>(null);
   const [isOpen, setIsOpen] = useState(false);
 
