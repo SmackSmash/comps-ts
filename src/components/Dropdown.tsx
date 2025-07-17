@@ -15,10 +15,10 @@ const Dropdown: FC<{
   };
 
   return (
-    <div className='flex w-full flex-col gap-2'>
+    <div className='flex w-full flex-col'>
       <div
         onClick={() => setIsOpen(!isOpen)}
-        className='flex cursor-pointer items-center bg-cyan-800 px-4 py-2'
+        className='flex cursor-pointer items-center rounded-t bg-cyan-800 px-4 py-2 last-of-type:rounded-b'
       >
         {value ? value.label : 'Select...'}
         <IoCaretDownSharp className='ml-auto' />
@@ -29,7 +29,7 @@ const Dropdown: FC<{
             <div
               key={index}
               onClick={() => handleOptionClick(option)}
-              className='cursor-pointer bg-cyan-600 px-4 py-2'
+              className='cursor-pointer border-b-1 border-cyan-200 bg-cyan-600 px-4 py-2 last-of-type:rounded-b last-of-type:border-0'
             >
               {option.label}
             </div>
