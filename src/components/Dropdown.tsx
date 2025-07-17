@@ -38,7 +38,7 @@ const Dropdown: FC<{
               <div
                 key={index}
                 onClick={() => handleOptionClick(option)}
-                className='w-full cursor-pointer border-b-1 border-cyan-200 bg-cyan-600 px-4 py-2'
+                className='w-full cursor-pointer border-b-1 border-cyan-200 bg-cyan-600 px-4 py-2 last-of-type:border-0'
               >
                 {option.label}
               </div>
