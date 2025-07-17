@@ -13,7 +13,7 @@ const Dropdown: FC<{ options: Array<Option> }> = ({ options }) => {
   };
 
   return (
-    <div className='flex w-full flex-col'>
+    <div className='flex w-full flex-col gap-2'>
       <div
         onClick={() => setIsOpen(!isOpen)}
         className='flex cursor-pointer items-center bg-cyan-800 px-4 py-2'
@@ -24,7 +24,11 @@ const Dropdown: FC<{ options: Array<Option> }> = ({ options }) => {
       {isOpen &&
         options.map((option, index) => {
           return (
-            <div key={index} onClick={() => handleOptionClick(option)} className='cursor-pointer'>
+            <div
+              key={index}
+              onClick={() => handleOptionClick(option)}
+              className='cursor-pointer bg-cyan-600 px-4 py-2'
+            >
               {option.label}
             </div>
           );
