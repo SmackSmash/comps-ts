@@ -15,7 +15,7 @@ const Dropdown: FC<{
   useEffect(() => {
     setSelectHeight(selectRef!.current!.clientHeight);
     console.log(selectHeight);
-  }, [selectHeight, setSelectHeight]);
+  }, [selectHeight]);
 
   const handleOptionClick = (option: Option) => {
     setIsOpen(!isOpen);
@@ -23,7 +23,7 @@ const Dropdown: FC<{
   };
 
   return (
-    <div className='relative flex w-full flex-col'>
+    <div onBlur={() => console.log('Clicked outside')} className='relative flex w-full flex-col'>
       <div
         onClick={() => setIsOpen(!isOpen)}
         ref={selectRef}
