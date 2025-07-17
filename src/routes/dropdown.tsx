@@ -17,8 +17,9 @@ const RouteComponent = () => {
   ];
 
   return (
-    <div className='flex gap-2 p-2'>
+    <div className='p-2'>
       <Dropdown options={options} value={selection} onChange={handleSelect} />
+      <p>Cover me please!</p>
     </div>
   );
 };
