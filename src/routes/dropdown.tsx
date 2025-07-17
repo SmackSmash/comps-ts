@@ -1,12 +1,13 @@
 import { createFileRoute } from '@tanstack/react-router';
 import Dropdown from '../components/Dropdown';
 import { useState } from 'react';
+import type { Option } from '../types';
 
 const RouteComponent = () => {
-  const [selection, setSelection] = useState<string | number | null>(null);
+  const [selection, setSelection] = useState<Option | null>(null);
 
-  const handleSelect = (value: string | number) => {
-    setSelection(value);
+  const handleSelect = (option: Option) => {
+    setSelection(option);
   };
 
   const options = [
@@ -17,7 +18,7 @@ const RouteComponent = () => {
 
   return (
     <div className='flex gap-2 p-2'>
-      <Dropdown options={options} onSelect={handleSelect} />
+      <Dropdown options={options} selection={selection} onSelect={handleSelect} />
     </div>
   );
 };

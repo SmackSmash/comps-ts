@@ -1,17 +1,17 @@
 import { useState, type FC } from 'react';
 import { IoCaretDownSharp } from 'react-icons/io5';
+import type { Option } from '../types';
 
-type Option = { label: string | number; value: string | number };
-
-const Dropdown: FC<{ options: Array<Option>; onSelect: (value: string | number) => void }> = ({
-  options
-}) => {
-  const [selectedOption, setSelectedOption] = useState<Option | null>(null);
+const Dropdown: FC<{
+  options: Array<Option>;
+  selection: Option | null;
+  onSelect: (option: Option) => void;
+}> = ({ options, selection, onSelect }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOptionClick = (option: Option) => {
     setIsOpen(!isOpen);
-    setSelectedOption(option);
+    onSelect(option);
   };
 
   return (
@@ -20,7 +20,7 @@ const Dropdown: FC<{ options: Array<Option>; onSelect: (value: string | number) 
         onClick={() => setIsOpen(!isOpen)}
         className='flex cursor-pointer items-center bg-cyan-800 px-4 py-2'
       >
-        {selectedOption ? selectedOption.label : 'Select...'}
+        {selection ? selection.label : 'Select...'}
         <IoCaretDownSharp className='ml-auto' />
       </div>
       {isOpen &&
