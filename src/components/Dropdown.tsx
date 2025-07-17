@@ -1,27 +1,30 @@
 import { useState, type FC } from 'react';
+import { IoCaretDownSharp } from 'react-icons/io5';
+import { type Option } from '../types';
 
-const Dropdown: FC<{ options: Array<{ label: string | number; value: string | number }> }> = ({
-  options
-}) => {
-  const [selectedValue, setSelectedValue] = useState<string | number>('Select...');
+const Dropdown: FC<{ options: Array<Option> }> = ({ options }) => {
+  const [selectedOption, setSelectedOption] = useState<Option | null>(null);
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleOptionClick = (value: string | number) => {
+  const handleOptionClick = (option: Option) => {
     setIsOpen(!isOpen);
-    setSelectedValue(value);
-    console.log(selectedValue);
+    setSelectedOption(option);
   };
 
   return (
     <div className='flex w-full flex-col'>
-      <div onClick={() => setIsOpen(!isOpen)} className='cursor-pointer bg-cyan-800 px-4 py-2'>
-        {selectedValue}
+      <div
+        onClick={() => setIsOpen(!isOpen)}
+        className='flex cursor-pointer items-center bg-cyan-800 px-4 py-2'
+      >
+        {selectedOption ? selectedOption.label : 'Select...'}
+        <IoCaretDownSharp className='ml-auto' />
       </div>
       {isOpen &&
-        options.map(({ label, value }, index) => {
+        options.map((option, index) => {
           return (
-            <div key={index} onClick={() => handleOptionClick(value)} className='cursor-pointer'>
-              {label}
+            <div key={index} onClick={() => handleOptionClick(option)} className='cursor-pointer'>
+              {option.label}
             </div>
           );
         })}
