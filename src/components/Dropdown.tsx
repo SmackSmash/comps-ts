@@ -4,14 +4,14 @@ import type { Option } from '../types';
 
 const Dropdown: FC<{
   options: Array<Option>;
-  selection: Option | null;
-  onSelect: (option: Option) => void;
-}> = ({ options, selection, onSelect }) => {
+  value: Option | null;
+  onChange: (option: Option) => void;
+}> = ({ options, value, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOptionClick = (option: Option) => {
     setIsOpen(!isOpen);
-    onSelect(option);
+    onChange(option);
   };
 
   return (
@@ -20,7 +20,7 @@ const Dropdown: FC<{
         onClick={() => setIsOpen(!isOpen)}
         className='flex cursor-pointer items-center bg-cyan-800 px-4 py-2'
       >
-        {selection ? selection.label : 'Select...'}
+        {value ? value.label : 'Select...'}
         <IoCaretDownSharp className='ml-auto' />
       </div>
       {isOpen &&
