@@ -22,7 +22,7 @@ const Dropdown: FC<{
   };
 
   return (
-    <div onBlur={() => console.log('Clicked outside')} className='relative flex w-full flex-col'>
+    <div className='relative flex w-full flex-col'>
       <div
         onClick={() => setIsOpen(!isOpen)}
         ref={selectRef}
