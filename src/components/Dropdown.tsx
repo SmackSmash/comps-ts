@@ -14,7 +14,8 @@ const Dropdown: FC<{
 
   useEffect(() => {
     setSelectHeight(selectRef!.current!.clientHeight);
-  }, [setSelectHeight]);
+    console.log(selectHeight);
+  }, [selectHeight, setSelectHeight]);
 
   const handleOptionClick = (option: Option) => {
     setIsOpen(!isOpen);
@@ -26,12 +27,12 @@ const Dropdown: FC<{
       <div
         onClick={() => setIsOpen(!isOpen)}
         ref={selectRef}
-        className='flex cursor-pointer items-center bg-cyan-800 px-4 py-2'
+        className='flex cursor-pointer items-center bg-cyan-800 px-4 py-4'
       >
         {value ? value.label : 'Select...'}
         {isOpen ? <IoCaretUpSharp className='ml-auto' /> : <IoCaretDownSharp className='ml-auto' />}
       </div>
-      <div className={`absolute top-[${selectHeight}px] w-full`}>
+      <div style={{ top: `${selectHeight}px` }} className='absolute w-full'>
         {isOpen &&
           options.map((option, index) => {
             return (
