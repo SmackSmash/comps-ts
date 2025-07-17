@@ -1,6 +1,7 @@
 import { useState, type FC } from 'react';
 import { IoCaretDownSharp } from 'react-icons/io5';
-import { type Option } from '../types';
+
+type Option = { label: string | number; value: string | number };
 
 const Dropdown: FC<{ options: Array<Option> }> = ({ options }) => {
   const [selectedOption, setSelectedOption] = useState<Option | null>(null);
