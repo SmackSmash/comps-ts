@@ -20,7 +20,7 @@ const Dropdown: FC<{
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       console.log('Clicked document');
-      if (!dropdownRef.current?.contains(e.target)) {
+      if (!dropdownRef.current?.contains(e.target as Node)) {
         setIsOpen(false);
       }
     };
@@ -36,7 +36,7 @@ const Dropdown: FC<{
   };
 
   return (
-    <div className='relative flex w-full flex-col'>
+    <div ref={dropdownRef} className='relative flex w-full flex-col'>
       <div
         onClick={() => setIsOpen(!isOpen)}
         ref={selectRef}
@@ -45,7 +45,7 @@ const Dropdown: FC<{
         {value ? value.label : 'Select...'}
         {isOpen ? <IoCaretUpSharp className='ml-auto' /> : <IoCaretDownSharp className='ml-auto' />}
       </div>
-      <div style={{ top: `${selectHeight}px` }} ref={dropdownRef} className='absolute z-1 w-full'>
+      <div style={{ top: `${selectHeight}px` }} className='absolute z-1 w-full'>
         {isOpen &&
           options.map((option, index) => {
             return (
