@@ -14,12 +14,19 @@ const Dropdown: FC<{
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (!selectRef.current) {
+      return;
+    }
+
     setSelectHeight(selectRef!.current!.clientHeight);
   }, []);
 
   useEffect(() => {
+    if (!dropdownRef.current) {
+      return;
+    }
+
     const handler = (e: MouseEvent) => {
-      console.log('Clicked document');
       if (!dropdownRef.current?.contains(e.target as Node)) {
         setIsOpen(false);
       }

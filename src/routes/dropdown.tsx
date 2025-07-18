@@ -20,6 +20,7 @@ const RouteComponent = () => {
     <div className='p-2'>
       <Dropdown options={options} value={selection} onChange={handleSelect} />
       <p>Cover me please!</p>
+      <Dropdown options={options} value={selection} onChange={handleSelect} />
     </div>
   );
 };
