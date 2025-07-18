@@ -11,10 +11,24 @@ const Dropdown: FC<{
   const [selectHeight, setSelectHeight] = useState(0);
 
   const selectRef = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setSelectHeight(selectRef!.current!.clientHeight);
-  }, [selectHeight]);
+  }, []);
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      console.log('Clicked document');
+      if (!dropdownRef.current?.contains(e.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('click', e => handler(e), true);
+
+    return document.removeEventListener('click', e => handler(e), true);
+  }, []);
 
   const handleOptionClick = (option: Option) => {
     setIsOpen(!isOpen);
@@ -31,7 +45,7 @@ const Dropdown: FC<{
         {value ? value.label : 'Select...'}
         {isOpen ? <IoCaretUpSharp className='ml-auto' /> : <IoCaretDownSharp className='ml-auto' />}
       </div>
-      <div style={{ top: `${selectHeight}px` }} className='absolute w-full'>
+      <div style={{ top: `${selectHeight}px` }} ref={dropdownRef} className='absolute z-1 w-full'>
         {isOpen &&
           options.map((option, index) => {
             return (
