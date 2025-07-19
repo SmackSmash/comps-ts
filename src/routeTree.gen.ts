@@ -9,11 +9,17 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ModalRouteImport } from './routes/modal'
 import { Route as DropdownRouteImport } from './routes/dropdown'
 import { Route as ButtonsRouteImport } from './routes/buttons'
 import { Route as AccordionRouteImport } from './routes/accordion'
 import { Route as IndexRouteImport } from './routes/index'
 
+const ModalRoute = ModalRouteImport.update({
+  id: '/modal',
+  path: '/modal',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DropdownRoute = DropdownRouteImport.update({
   id: '/dropdown',
   path: '/dropdown',
@@ -40,12 +46,14 @@ export interface FileRoutesByFullPath {
   '/accordion': typeof AccordionRoute
   '/buttons': typeof ButtonsRoute
   '/dropdown': typeof DropdownRoute
+  '/modal': typeof ModalRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/accordion': typeof AccordionRoute
   '/buttons': typeof ButtonsRoute
   '/dropdown': typeof DropdownRoute
+  '/modal': typeof ModalRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,13 +61,14 @@ export interface FileRoutesById {
   '/accordion': typeof AccordionRoute
   '/buttons': typeof ButtonsRoute
   '/dropdown': typeof DropdownRoute
+  '/modal': typeof ModalRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/accordion' | '/buttons' | '/dropdown'
+  fullPaths: '/' | '/accordion' | '/buttons' | '/dropdown' | '/modal'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/accordion' | '/buttons' | '/dropdown'
-  id: '__root__' | '/' | '/accordion' | '/buttons' | '/dropdown'
+  to: '/' | '/accordion' | '/buttons' | '/dropdown' | '/modal'
+  id: '__root__' | '/' | '/accordion' | '/buttons' | '/dropdown' | '/modal'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -67,10 +76,18 @@ export interface RootRouteChildren {
   AccordionRoute: typeof AccordionRoute
   ButtonsRoute: typeof ButtonsRoute
   DropdownRoute: typeof DropdownRoute
+  ModalRoute: typeof ModalRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/modal': {
+      id: '/modal'
+      path: '/modal'
+      fullPath: '/modal'
+      preLoaderRoute: typeof ModalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dropdown': {
       id: '/dropdown'
       path: '/dropdown'
@@ -107,6 +124,7 @@ const rootRouteChildren: RootRouteChildren = {
   AccordionRoute: AccordionRoute,
   ButtonsRoute: ButtonsRoute,
   DropdownRoute: DropdownRoute,
+  ModalRoute: ModalRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

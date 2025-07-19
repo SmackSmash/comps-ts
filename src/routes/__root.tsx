@@ -18,6 +18,9 @@ export const Route = createRootRoute({
         <Link to='/dropdown' className='[&.active]:font-bold'>
           Dropdown
         </Link>
+        <Link to='/modal' className='[&.active]:font-bold'>
+          Modal
+        </Link>
       </div>
       <hr />
       <Outlet />
