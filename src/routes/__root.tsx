@@ -23,7 +23,9 @@ export const Route = createRootRoute({
         </Link>
       </div>
       <hr />
-      <Outlet />
+      <div className='flex gap-2 p-2'>
+        <Outlet />
+      </div>
       <TanStackRouterDevtools />
     </>
   ),

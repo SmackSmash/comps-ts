@@ -2,11 +2,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import Modal from '../components/Modal';
 
 const RouteComponent = () => {
-  return (
-    <div>
-      <Modal />
-    </div>
-  );
+  return <Modal />;
 };
 
 export const Route = createFileRoute('/modal')({

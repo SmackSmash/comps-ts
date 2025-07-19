@@ -20,11 +20,7 @@ const RouteComponent = () => {
     }
   ];
 
-  return (
-    <div className='flex gap-2 p-2'>
-      <Accordion items={accordionItems} />
-    </div>
-  );
+  return <Accordion items={accordionItems} />;
 };
 
 export const Route = createFileRoute('/accordion')({
