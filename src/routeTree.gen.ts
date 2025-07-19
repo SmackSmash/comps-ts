@@ -9,12 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TableRouteImport } from './routes/table'
 import { Route as ModalRouteImport } from './routes/modal'
 import { Route as DropdownRouteImport } from './routes/dropdown'
 import { Route as ButtonsRouteImport } from './routes/buttons'
 import { Route as AccordionRouteImport } from './routes/accordion'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TableRoute = TableRouteImport.update({
+  id: '/table',
+  path: '/table',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ModalRoute = ModalRouteImport.update({
   id: '/modal',
   path: '/modal',
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/buttons': typeof ButtonsRoute
   '/dropdown': typeof DropdownRoute
   '/modal': typeof ModalRoute
+  '/table': typeof TableRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/buttons': typeof ButtonsRoute
   '/dropdown': typeof DropdownRoute
   '/modal': typeof ModalRoute
+  '/table': typeof TableRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,13 +70,21 @@ export interface FileRoutesById {
   '/buttons': typeof ButtonsRoute
   '/dropdown': typeof DropdownRoute
   '/modal': typeof ModalRoute
+  '/table': typeof TableRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/accordion' | '/buttons' | '/dropdown' | '/modal'
+  fullPaths: '/' | '/accordion' | '/buttons' | '/dropdown' | '/modal' | '/table'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/accordion' | '/buttons' | '/dropdown' | '/modal'
-  id: '__root__' | '/' | '/accordion' | '/buttons' | '/dropdown' | '/modal'
+  to: '/' | '/accordion' | '/buttons' | '/dropdown' | '/modal' | '/table'
+  id:
+    | '__root__'
+    | '/'
+    | '/accordion'
+    | '/buttons'
+    | '/dropdown'
+    | '/modal'
+    | '/table'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -77,10 +93,18 @@ export interface RootRouteChildren {
   ButtonsRoute: typeof ButtonsRoute
   DropdownRoute: typeof DropdownRoute
   ModalRoute: typeof ModalRoute
+  TableRoute: typeof TableRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/table': {
+      id: '/table'
+      path: '/table'
+      fullPath: '/table'
+      preLoaderRoute: typeof TableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/modal': {
       id: '/modal'
       path: '/modal'
@@ -125,6 +149,7 @@ const rootRouteChildren: RootRouteChildren = {
   ButtonsRoute: ButtonsRoute,
   DropdownRoute: DropdownRoute,
   ModalRoute: ModalRoute,
+  TableRoute: TableRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

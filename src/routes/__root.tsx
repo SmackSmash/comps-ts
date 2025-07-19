@@ -21,6 +21,9 @@ export const Route = createRootRoute({
         <Link to='/modal' className='[&.active]:font-bold'>
           Modal
         </Link>
+        <Link to='/table' className='[&.active]:font-bold'>
+          Table
+        </Link>
       </div>
       <hr />
       <div className='flex gap-2 p-2'>
