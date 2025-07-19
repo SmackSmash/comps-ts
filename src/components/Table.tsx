@@ -1,5 +1,6 @@
 import type { FC } from 'react';
 import type { Fruit } from '../types';
+import { twMerge } from 'tailwind-merge';
 
 const Table: FC<{ data: Fruit[] }> = ({ data }) => {
   return (
@@ -15,7 +16,9 @@ const Table: FC<{ data: Fruit[] }> = ({ data }) => {
         {data.map(({ name, color, score }, index) => (
           <tr key={index}>
             <td>{name}</td>
-            <td>{color}</td>
+            <td>
+              <div className={twMerge(color, 'h-5 w-5')}></div>
+            </td>
             <td>{score}</td>
           </tr>
         ))}
