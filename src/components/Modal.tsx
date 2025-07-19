@@ -1,8 +1,8 @@
-import type { FC, MouseEvent } from 'react';
+import type { FC, MouseEvent, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { motion } from 'motion/react';
 
-const Modal: FC<{ onClose: () => void }> = ({ onClose }) => {
+const Modal: FC<{ onClose: () => void; children: ReactNode }> = ({ onClose, children }) => {
   const handleClick = (e: MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
     console.log('Clicked inside modal!');
@@ -20,7 +20,7 @@ const Modal: FC<{ onClose: () => void }> = ({ onClose }) => {
         onClick={handleClick}
         className='flex h-40 w-2/3 items-center justify-center rounded bg-cyan-200 p-2 text-cyan-950'
       >
-        Modal Component!
+        {children}
       </div>
     </motion.div>,
     document.body
