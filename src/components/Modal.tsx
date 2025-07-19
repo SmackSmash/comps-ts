@@ -1,14 +1,16 @@
 import type { FC } from 'react';
 import { createPortal } from 'react-dom';
+import { motion } from 'motion/react';
 
 const Modal: FC<{ onClick: () => void }> = ({ onClick }) => {
   return createPortal(
-    <div
+    <motion.div
+      exit={{ opacity: 0 }}
       onClick={onClick}
       className='absolute top-0 left-0 flex min-h-full min-w-full items-center justify-center bg-slate-900/75'
     >
       Modal component
-    </div>,
+    </motion.div>,
     document.body
   );
 };

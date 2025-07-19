@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import Modal from '../components/Modal';
 import { useState } from 'react';
 import Button from '../components/Button';
+import { AnimatePresence } from 'motion/react';
 
 const RouteComponent = () => {
   const [showModal, setShowModal] = useState(false);
@@ -13,7 +14,7 @@ const RouteComponent = () => {
   return (
     <div>
       <Button onClick={handleClick}>Show Modal</Button>
-      {showModal && <Modal onClick={handleClick} />}
+      <AnimatePresence>{showModal && <Modal key='modal' onClick={handleClick} />}</AnimatePresence>
     </div>
   );
 };
