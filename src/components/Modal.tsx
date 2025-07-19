@@ -9,7 +9,9 @@ const Modal: FC<{ onClick: () => void }> = ({ onClick }) => {
       onClick={onClick}
       className='absolute top-0 left-0 flex min-h-full min-w-full items-center justify-center bg-slate-900/75'
     >
-      Modal component
+      <div className='flex h-40 w-2/3 items-center justify-center rounded bg-cyan-200 p-2 text-cyan-950'>
+        Modal Component!
+      </div>
     </motion.div>,
     document.body
   );

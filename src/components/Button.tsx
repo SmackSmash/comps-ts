@@ -9,7 +9,6 @@ const Button: FC<{
   children: ReactNode;
   [x: string]: unknown;
 }> = ({ className, style, outline, rounded, children, ...rest }) => {
-  console.log(className);
   const defaultStyles =
     'flex items-center gap-2 cursor-pointer border-4 border-black bg-white px-4 py-2 text-black transition duration-50 hover:scale-[1.05] active:scale-100';
   let computedStyles = className || '';
