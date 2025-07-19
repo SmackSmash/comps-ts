@@ -1,9 +1,12 @@
 import type { FC } from 'react';
 import { createPortal } from 'react-dom';
 
-const Modal: FC = () => {
+const Modal: FC<{ onClick: () => void }> = ({ onClick }) => {
   return createPortal(
-    <div className='absolute top-0 left-0 flex min-h-full min-w-full items-center justify-center bg-slate-900/75'>
+    <div
+      onClick={onClick}
+      className='absolute top-0 left-0 flex min-h-full min-w-full items-center justify-center bg-slate-900/75'
+    >
       Modal component
     </div>,
     document.body
