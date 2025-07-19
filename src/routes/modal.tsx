@@ -16,7 +16,7 @@ const RouteComponent = () => {
       <Button style='success' rounded onClick={handleClick}>
         Show Modal
       </Button>
-      <AnimatePresence>{showModal && <Modal key='modal' onClick={handleClick} />}</AnimatePresence>
+      <AnimatePresence>{showModal && <Modal key='modal' onClose={handleClick} />}</AnimatePresence>
     </div>
   );
 };
