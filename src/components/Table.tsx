@@ -7,11 +7,19 @@ const Table: FC<{ data: Fruit[] }> = ({ data }) => {
       <thead>
         <tr>
           {Object.keys(data[0]).map((key, index) => (
-            <td key={index}>{key}</td>
+            <td key={index}>{key.charAt(0).toUpperCase() + key.slice(1)}</td>
           ))}
         </tr>
       </thead>
-      <tbody></tbody>
+      <tbody>
+        {data.map(({ name, color, score }, index) => (
+          <tr key={index}>
+            <td>{name}</td>
+            <td>{color}</td>
+            <td>{score}</td>
+          </tr>
+        ))}
+      </tbody>
     </table>
   );
 };
