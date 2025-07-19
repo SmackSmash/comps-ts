@@ -5,6 +5,8 @@ import { motion } from 'motion/react';
 const Modal: FC<{ onClick: () => void }> = ({ onClick }) => {
   return createPortal(
     <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       onClick={onClick}
       className='absolute top-0 left-0 flex min-h-full min-w-full items-center justify-center bg-slate-900/75'
