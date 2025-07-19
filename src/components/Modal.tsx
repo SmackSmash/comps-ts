@@ -1,17 +1,16 @@
 import { useEffect, type FC, type ReactNode } from 'react';
-import { createPortal } from 'react-dom';
 import { motion } from 'motion/react';
 
 const Modal: FC<{ onClose: () => void; children: ReactNode }> = ({ onClose, children }) => {
   useEffect(() => {
-    document.body.style.overflow = 'hidden';
+    document.body.classList.add('overflow-hidden');
 
     return () => {
-      document.body.style.overflow = 'auto';
+      document.body.classList.remove('overflow-hidden');
     };
   }, []);
 
-  const modalContent = (
+  return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -27,8 +26,6 @@ const Modal: FC<{ onClose: () => void; children: ReactNode }> = ({ onClose, chil
       </div>
     </motion.div>
   );
-
-  return createPortal(modalContent, document.body);
 };
 
 export default Modal;
