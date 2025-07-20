@@ -19,7 +19,7 @@ const RouteComponent = () => {
 
   const config = [
     { label: 'Fruit', render: (fruit: Fruit) => fruit.name },
-    { label: 'Color', render: (fruit: Fruit) => fruit.color },
+    { label: 'Color', render: (fruit: Fruit) => <div className={`${fruit.color} h-4 w-4`}></div> },
     { label: 'Score', render: (fruit: Fruit) => fruit.score }
   ];
 
