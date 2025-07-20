@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import type { Fruit } from '../types';
 
-const Table: FC<{ data: Fruit[]; config: [{ label: string }] }> = ({ data, config }) => {
+const Table: FC<{ data: Fruit[]; config: Array<{ label: string }> }> = ({ data, config }) => {
   return (
     <table>
       <thead className='bg-cyan-300 text-cyan-950'>
