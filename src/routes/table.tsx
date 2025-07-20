@@ -37,13 +37,18 @@ const RouteComponent = () => {
   ];
 
   const carConfig = [
-    { label: 'Name', render: (car: Car) => car.name },
-    { label: 'Price', render: (car: Car) => `$${car.price.toLocaleString()}` },
-    { label: 'Discount', render: (car: Car) => `${car.discount.toFixed(2)}%` },
-    { label: 'Desirable', render: (car: Car) => (car.desirable ? 'Yes' : 'No') }
+    { label: 'Name', render: (row: Car) => row.name },
+    { label: 'Price', render: (row: Car) => `$${row.price.toLocaleString()}` },
+    { label: 'Discount', render: (row: Car) => `${row.discount.toFixed(2)}%` },
+    { label: 'Desirable', render: (row: Car) => (row.desirable ? 'Yes' : 'No') }
   ];
 
-  return <Table data={data} config={config} />;
+  return (
+    <>
+      <Table data={data} config={config} />
+      <Table data={carData} config={carConfig} />
+    </>
+  );
 };
 
 export const Route = createFileRoute('/table')({
