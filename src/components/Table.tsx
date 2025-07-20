@@ -1,14 +1,14 @@
 import type { FC } from 'react';
 import type { Fruit } from '../types';
 
-const Table: FC<{ data: Fruit[] }> = ({ data }) => {
+const Table: FC<{ data: Fruit[]; config: [{ label: string }] }> = ({ data, config }) => {
   return (
     <table>
       <thead className='bg-cyan-300 text-cyan-950'>
         <tr>
-          {Object.keys(data[0]).map((key, index) => (
+          {config.map(({ label }, index) => (
             <td key={index} className='p-2'>
-              {key.charAt(0).toUpperCase() + key.slice(1)}
+              {label}
             </td>
           ))}
         </tr>

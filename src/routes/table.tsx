@@ -16,7 +16,9 @@ const RouteComponent = () => {
     { name: 'Blackberry', color: 'bg-gray-500', score: 100 }
   ];
 
-  return <Table data={data} />;
+  const config = [{ label: 'Fruit' }, { label: 'Color' }, { label: 'Score' }];
+
+  return <Table data={data} config={config} />;
 };
 
 export const Route = createFileRoute('/table')({
