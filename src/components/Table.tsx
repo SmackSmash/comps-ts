@@ -14,7 +14,7 @@ const Table: FC<{ data: Fruit[] }> = ({ data }) => {
       </thead>
       <tbody>
         {data.map(({ name, color, score }, index) => (
-          <tr key={index}>
+          <tr key={index} className={index < data.length - 1 ? 'border-b-2' : ''}>
             <td>{name}</td>
             <td>
               <div className={twMerge(color, 'h-5 w-5')}></div>
