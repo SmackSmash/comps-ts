@@ -7,9 +7,9 @@ const Table: FC<{ data: Fruit[]; config: [{ label: string }] }> = ({ data, confi
       <thead className='bg-cyan-300 text-cyan-950'>
         <tr>
           {config.map(({ label }, index) => (
-            <td key={index} className='p-2'>
+            <th key={index} className='p-2'>
               {label}
-            </td>
+            </th>
           ))}
         </tr>
       </thead>
