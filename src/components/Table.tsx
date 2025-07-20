@@ -1,7 +1,10 @@
-import type { FC } from 'react';
+import type { FC, JSX } from 'react';
 import type { Fruit } from '../types';
 
-const Table: FC<{ data: Fruit[]; config: Array<{ label: string }> }> = ({ data, config }) => {
+const Table: FC<{
+  data: Fruit[];
+  config: Array<{ label: string; render: (fruit: Fruit) => string | number | JSX.Element }>;
+}> = ({ data, config }) => {
   return (
     <table>
       <thead className='bg-cyan-300 text-cyan-950'>
@@ -13,14 +16,12 @@ const Table: FC<{ data: Fruit[]; config: Array<{ label: string }> }> = ({ data, 
           ))}
         </tr>
       </thead>
-      <tbody>
-        {data.map(({ name, color, score }, index) => (
+      <tbody className='bg-cyan-900'>
+        {data.map((fruit, index) => (
           <tr key={index} className={index < data.length - 1 ? 'border-b-2' : ''}>
-            <td className='p-2'>{name}</td>
-            <td className='p-2'>
-              <div className={`${color} h-5 w-5`}></div>
-            </td>
-            <td className='p-2'>{score}</td>
+            {config.map(element => (
+              <td className='p-2'>{element.render(fruit)}</td>
+            ))}
           </tr>
         ))}
       </tbody>
