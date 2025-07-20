@@ -1,6 +1,5 @@
 import type { FC } from 'react';
 import type { Fruit } from '../types';
-import { twMerge } from 'tailwind-merge';
 
 const Table: FC<{ data: Fruit[] }> = ({ data }) => {
   return (
@@ -19,7 +18,7 @@ const Table: FC<{ data: Fruit[] }> = ({ data }) => {
           <tr key={index} className={index < data.length - 1 ? 'border-b-2' : ''}>
             <td className='p-2'>{name}</td>
             <td className='p-2'>
-              <div className={twMerge(color, 'h-5 w-5')}></div>
+              <div className={`${color} h-5 w-5`}></div>
             </td>
             <td className='p-2'>{score}</td>
           </tr>
