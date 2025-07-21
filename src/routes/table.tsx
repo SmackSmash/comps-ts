@@ -16,9 +16,17 @@ const fruitData = [
 ];
 
 const fruitConfig = [
-  { label: 'Fruit', render: (fruit: Fruit) => fruit.name, sort: (a: string, b: string) => a < b },
+  {
+    label: 'Fruit',
+    render: (fruit: Fruit) => fruit.name,
+    sortFn: (a: Fruit, b: Fruit) => (a.name > b.name ? 1 : -1)
+  },
   { label: 'Color', render: (fruit: Fruit) => <div className={`${fruit.color} h-4 w-4`}></div> },
-  { label: 'Score', render: (fruit: Fruit) => fruit.score }
+  {
+    label: 'Score',
+    render: (fruit: Fruit) => fruit.score,
+    sortFn: (a: Fruit, b: Fruit) => a.score - b.score
+  }
 ];
 
 const carData = [
@@ -35,9 +43,21 @@ const carData = [
 ];
 
 const carConfig = [
-  { label: 'Name', render: (row: Car) => row.name },
-  { label: 'Price', render: (row: Car) => `$${row.price.toLocaleString()}` },
-  { label: 'Discount', render: (row: Car) => `$${Math.round(row.price * (1 - row.discount))}` },
+  {
+    label: 'Name',
+    render: (row: Car) => row.name,
+    sortFn: (a: Car, b: Car) => (a.name > b.name ? 1 : -1)
+  },
+  {
+    label: 'Price',
+    render: (row: Car) => `$${row.price.toLocaleString()}`,
+    sortFn: (a: Car, b: Car) => a.price - b.price
+  },
+  {
+    label: 'Discount',
+    render: (row: Car) => `$${Math.round(row.price * (1 - row.discount))}`,
+    sortFn: (a: Car, b: Car) => a.discount - b.discount
+  },
   { label: 'Desirable', render: (row: Car) => (row.desirable ? 'Yes' : 'No') }
 ];
 

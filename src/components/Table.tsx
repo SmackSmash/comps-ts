@@ -8,19 +8,30 @@ const Table = <T,>({
   config: Array<{
     label: string;
     render: (row: T) => JSX.Element | string | number;
+    sortFn?: (a: T, b: T) => number;
   }>;
 }) => {
-  const [state] = useState(data);
+  const [state, setState] = useState(data);
 
   return (
     <table>
       <thead className='bg-cyan-300 text-cyan-950'>
         <tr>
-          {config.map(({ label }, index) => (
-            <th key={index} className='p-2 text-left'>
-              {label}
-            </th>
-          ))}
+          {config.map(({ label, sortFn }, index) =>
+            sortFn ? (
+              <th
+                key={index}
+                onClick={() => setState([...state].sort(sortFn))}
+                className='cursor-pointer p-2 text-left'
+              >
+                {label}
+              </th>
+            ) : (
+              <th key={index} className='p-2 text-left'>
+                {label}
+              </th>
+            )
+          )}
         </tr>
       </thead>
       <tbody className='bg-cyan-900'>
