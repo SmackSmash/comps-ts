@@ -1,4 +1,5 @@
 import { useState, type JSX } from 'react';
+import { FaSort } from 'react-icons/fa';
 
 const Table = <T,>({
   data,
@@ -24,7 +25,7 @@ const Table = <T,>({
                 onClick={() => setState([...state].sort(sortFn))}
                 className='cursor-pointer p-2 text-left'
               >
-                {label}
+                {label} <FaSort className='ml-auto inline-block' />
               </th>
             ) : (
               <th key={index} className='p-2 text-left'>
