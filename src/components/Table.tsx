@@ -13,6 +13,16 @@ const Table = <T,>({
   }>;
 }) => {
   const [state, setState] = useState(data);
+  const [sortedBy, setSortedBy] = useState<string | null>(null);
+
+  const sortTable = (label: string, sortFn: (a: T, b: T) => number) => {
+    if (sortedBy !== label) {
+      setSortedBy(label);
+      setState([...state].sort(sortFn));
+    } else {
+      setState([...state].reverse());
+    }
+  };
 
   return (
     <table>
@@ -22,7 +32,7 @@ const Table = <T,>({
             sortFn ? (
               <th
                 key={index}
-                onClick={() => setState([...state].sort(sortFn))}
+                onClick={() => sortTable(label, sortFn)}
                 className='cursor-pointer p-2 text-left'
               >
                 {label} <FaSort className='ml-auto inline-block' />

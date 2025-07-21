@@ -19,7 +19,7 @@ const fruitConfig = [
   {
     label: 'Fruit',
     render: (fruit: Fruit) => fruit.name,
-    sortFn: (a: Fruit, b: Fruit) => (a.name > b.name ? 1 : -1)
+    sortFn: (a: Fruit, b: Fruit) => a.name.localeCompare(b.name)
   },
   { label: 'Color', render: (fruit: Fruit) => <div className={`${fruit.color} h-4 w-4`}></div> },
   {
@@ -46,7 +46,7 @@ const carConfig = [
   {
     label: 'Name',
     render: (row: Car) => row.name,
-    sortFn: (a: Car, b: Car) => (a.name > b.name ? 1 : -1)
+    sortFn: (a: Car, b: Car) => a.name.localeCompare(b.name)
   },
   {
     label: 'Price',
