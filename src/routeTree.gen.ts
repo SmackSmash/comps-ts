@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as TableRouteImport } from './routes/table'
 import { Route as ModalRouteImport } from './routes/modal'
 import { Route as DropdownRouteImport } from './routes/dropdown'
+import { Route as CounterRouteImport } from './routes/counter'
 import { Route as ButtonsRouteImport } from './routes/buttons'
 import { Route as AccordionRouteImport } from './routes/accordion'
 import { Route as IndexRouteImport } from './routes/index'
@@ -29,6 +30,11 @@ const ModalRoute = ModalRouteImport.update({
 const DropdownRoute = DropdownRouteImport.update({
   id: '/dropdown',
   path: '/dropdown',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CounterRoute = CounterRouteImport.update({
+  id: '/counter',
+  path: '/counter',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ButtonsRoute = ButtonsRouteImport.update({
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/accordion': typeof AccordionRoute
   '/buttons': typeof ButtonsRoute
+  '/counter': typeof CounterRoute
   '/dropdown': typeof DropdownRoute
   '/modal': typeof ModalRoute
   '/table': typeof TableRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/accordion': typeof AccordionRoute
   '/buttons': typeof ButtonsRoute
+  '/counter': typeof CounterRoute
   '/dropdown': typeof DropdownRoute
   '/modal': typeof ModalRoute
   '/table': typeof TableRoute
@@ -68,20 +76,36 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/accordion': typeof AccordionRoute
   '/buttons': typeof ButtonsRoute
+  '/counter': typeof CounterRoute
   '/dropdown': typeof DropdownRoute
   '/modal': typeof ModalRoute
   '/table': typeof TableRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/accordion' | '/buttons' | '/dropdown' | '/modal' | '/table'
+  fullPaths:
+    | '/'
+    | '/accordion'
+    | '/buttons'
+    | '/counter'
+    | '/dropdown'
+    | '/modal'
+    | '/table'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/accordion' | '/buttons' | '/dropdown' | '/modal' | '/table'
+  to:
+    | '/'
+    | '/accordion'
+    | '/buttons'
+    | '/counter'
+    | '/dropdown'
+    | '/modal'
+    | '/table'
   id:
     | '__root__'
     | '/'
     | '/accordion'
     | '/buttons'
+    | '/counter'
     | '/dropdown'
     | '/modal'
     | '/table'
@@ -91,6 +115,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AccordionRoute: typeof AccordionRoute
   ButtonsRoute: typeof ButtonsRoute
+  CounterRoute: typeof CounterRoute
   DropdownRoute: typeof DropdownRoute
   ModalRoute: typeof ModalRoute
   TableRoute: typeof TableRoute
@@ -117,6 +142,13 @@ declare module '@tanstack/react-router' {
       path: '/dropdown'
       fullPath: '/dropdown'
       preLoaderRoute: typeof DropdownRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/counter': {
+      id: '/counter'
+      path: '/counter'
+      fullPath: '/counter'
+      preLoaderRoute: typeof CounterRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/buttons': {
@@ -147,6 +179,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AccordionRoute: AccordionRoute,
   ButtonsRoute: ButtonsRoute,
+  CounterRoute: CounterRoute,
   DropdownRoute: DropdownRoute,
   ModalRoute: ModalRoute,
   TableRoute: TableRoute,

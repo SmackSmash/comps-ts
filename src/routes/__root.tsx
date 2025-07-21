@@ -24,6 +24,9 @@ export const Route = createRootRoute({
         <Link to='/table' className='[&.active]:font-bold'>
           Table
         </Link>
+        <Link to='/counter' className='[&.active]:font-bold'>
+          Counter
+        </Link>
       </div>
       <hr />
       <div className='flex gap-2 p-2'>
