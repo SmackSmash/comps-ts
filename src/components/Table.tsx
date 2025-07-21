@@ -25,8 +25,8 @@ const Table = <T,>({
   };
 
   return (
-    <table>
-      <thead className='bg-cyan-300 text-cyan-950'>
+    <table className='overflow-hidden rounded'>
+      <thead className='rounded-t bg-cyan-800 text-cyan-50'>
         <tr>
           {config.map(({ label, sortFn }, index) =>
             sortFn ? (
@@ -47,7 +47,7 @@ const Table = <T,>({
       </thead>
       <tbody className='bg-cyan-900'>
         {state.map((row, index) => (
-          <tr key={index} className={index < data.length - 1 ? 'border-b-2' : ''}>
+          <tr key={index} className={index < data.length - 1 ? 'border-b-2 border-b-cyan-800' : ''}>
             {config.map((element, index) => (
               <td key={index} className='p-2'>
                 {element.render(row)}
