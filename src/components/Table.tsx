@@ -1,4 +1,4 @@
-import type { JSX } from 'react';
+import { useState, type JSX } from 'react';
 
 const Table = <T,>({
   data,
@@ -10,6 +10,8 @@ const Table = <T,>({
     render: (row: T) => JSX.Element | string | number;
   }>;
 }) => {
+  const [state] = useState(data);
+
   return (
     <table>
       <thead className='bg-cyan-300 text-cyan-950'>
@@ -22,7 +24,7 @@ const Table = <T,>({
         </tr>
       </thead>
       <tbody className='bg-cyan-900'>
-        {data.map((row, index) => (
+        {state.map((row, index) => (
           <tr key={index} className={index < data.length - 1 ? 'border-b-2' : ''}>
             {config.map((element, index) => (
               <td key={index} className='p-2'>
