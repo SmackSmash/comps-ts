@@ -1,9 +1,16 @@
-import { type FC } from 'react';
+import { useEffect, useState, type FC } from 'react';
 import Button from './Button';
-import useCounter from '../hooks/useCounter';
 
 const Counter: FC<{ initialCount?: number }> = ({ initialCount = 0 }) => {
-  const [count, incrementCount] = useCounter(initialCount);
+  const [count, setCount] = useState(initialCount);
+
+  useEffect(() => {
+    console.log(count);
+  }, [count]);
+
+  const incrementCount = () => {
+    setCount(count + 1);
+  };
 
   return (
     <div className='mt-2 flex flex-col items-center gap-4 rounded-2xl bg-cyan-600 p-4'>
