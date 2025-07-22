@@ -1,4 +1,4 @@
-import { useState, type FC, type FormEvent } from 'react';
+import { useState, type ChangeEvent, type FC, type FormEvent } from 'react';
 import Button from './Button';
 
 const Counter: FC<{ initialCount?: number }> = ({ initialCount = 0 }) => {
@@ -11,6 +11,10 @@ const Counter: FC<{ initialCount?: number }> = ({ initialCount = 0 }) => {
 
   const decrementCount = () => {
     setCount(count - 1);
+  };
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setAddValue(e.target.value);
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -31,7 +35,7 @@ const Counter: FC<{ initialCount?: number }> = ({ initialCount = 0 }) => {
         </Button>
       </div>
       <form
-        onSubmit={e => handleSubmit(e)}
+        onSubmit={handleSubmit}
         className='flex flex-col gap-4 rounded-2xl bg-cyan-200 p-4 text-cyan-950'
       >
         <label htmlFor='add'>Add a lot</label>
@@ -40,7 +44,7 @@ const Counter: FC<{ initialCount?: number }> = ({ initialCount = 0 }) => {
           name='add'
           id='add'
           value={addValue}
-          onChange={e => setAddValue(e.target.value)}
+          onChange={handleChange}
           className='rounded-2xl bg-cyan-50 px-4 py-2 outline-0'
         />
         <Button style='primary' rounded>
