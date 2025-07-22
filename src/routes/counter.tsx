@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import Counter from '../components/Counter';
 
 function RouteComponent() {
-  return <Counter />;
+  return <Counter initialCount={5} />;
 }
 
 export const Route = createFileRoute('/counter')({
