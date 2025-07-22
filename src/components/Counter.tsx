@@ -1,23 +1,52 @@
-import { useEffect, useState, type FC } from 'react';
+import { useState, type FC, type FormEvent } from 'react';
 import Button from './Button';
 
 const Counter: FC<{ initialCount?: number }> = ({ initialCount = 0 }) => {
   const [count, setCount] = useState(initialCount);
-
-  useEffect(() => {
-    console.log(count);
-  }, [count]);
+  const [addValue, setAddValue] = useState('');
 
   const incrementCount = () => {
     setCount(count + 1);
   };
 
+  const decrementCount = () => {
+    setCount(count - 1);
+  };
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setCount(count + Number(addValue));
+    setAddValue('');
+  };
+
   return (
     <div className='mt-2 flex flex-col items-center gap-4 rounded-2xl bg-cyan-600 p-4'>
       <div className='text-5xl font-bold'>{count}</div>
-      <Button style='success' rounded onClick={incrementCount}>
-        Increment
-      </Button>
+      <div className='flex gap-2'>
+        <Button style='success' rounded onClick={incrementCount}>
+          Increment
+        </Button>
+        <Button style='danger' rounded onClick={decrementCount}>
+          Decrement
+        </Button>
+      </div>
+      <form
+        onSubmit={e => handleSubmit(e)}
+        className='flex flex-col gap-4 rounded-2xl bg-cyan-200 p-4 text-cyan-950'
+      >
+        <label htmlFor='add'>Add a lot</label>
+        <input
+          type='number'
+          name='add'
+          id='add'
+          value={addValue}
+          onChange={e => setAddValue(e.target.value)}
+          className='rounded-2xl bg-cyan-50 px-4 py-2 outline-0'
+        />
+        <Button style='primary' rounded>
+          Add
+        </Button>
+      </form>
     </div>
   );
 };
