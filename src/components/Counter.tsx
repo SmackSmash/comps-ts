@@ -3,7 +3,7 @@ import Button from './Button';
 
 const Counter: FC<{ initialCount?: number }> = ({ initialCount = 0 }) => {
   const [count, setCount] = useState(initialCount);
-  const [addValue, setAddValue] = useState<number | ''>('');
+  const [addValue, setAddValue] = useState(0);
 
   const incrementCount = () => {
     setCount(count + 1);
@@ -20,7 +20,7 @@ const Counter: FC<{ initialCount?: number }> = ({ initialCount = 0 }) => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setCount(count + Number(addValue));
-    setAddValue('');
+    setAddValue(0);
   };
 
   return (
