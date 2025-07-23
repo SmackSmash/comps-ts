@@ -1,16 +1,25 @@
 import { useReducer, type ChangeEvent, type FC, type FormEvent } from 'react';
 import Button from './Button';
 
-const reducer = (state, action) => {
+const reducer = (
+  state: {
+    count: number;
+    addValue: number;
+  },
+  action: {
+    type: string;
+    payload?: number;
+  }
+) => {
   switch (action.type) {
     case 'increment':
       return { ...state, count: state.count + 1 };
     case 'decrement':
       return { ...state, count: state.count - 1 };
     case 'change-value':
-      return { ...state, addValue: action.payload };
+      return { ...state, addValue: action.payload! };
     case 'add-value':
-      return { count: state.count + action.payload, addValue: 0 };
+      return { count: state.count + action.payload!, addValue: 0 };
     default:
       return state;
   }
