@@ -1,24 +1,26 @@
 import { useReducer, type ChangeEvent, type FC, type FormEvent } from 'react';
 import Button from './Button';
 
+type Action = 'INCREMENT' | 'DECREMENT' | 'CHANGE_VALUE' | 'ADD_VALUE';
+
 const reducer = (
   state: {
     count: number;
     addValue: number;
   },
   action: {
-    type: string;
+    type: Action;
     payload?: number;
   }
 ) => {
   switch (action.type) {
-    case 'increment':
+    case 'INCREMENT':
       return { ...state, count: state.count + 1 };
-    case 'decrement':
+    case 'DECREMENT':
       return { ...state, count: state.count - 1 };
-    case 'change-value':
+    case 'CHANGE_VALUE':
       return { ...state, addValue: action.payload! };
-    case 'add-value':
+    case 'ADD_VALUE':
       return { count: state.count + action.payload!, addValue: 0 };
     default:
       return state;
@@ -32,20 +34,20 @@ const Counter: FC<{ initialCount?: number }> = ({ initialCount = 0 }) => {
   });
 
   const incrementCount = () => {
-    dispatch({ type: 'increment' });
+    dispatch({ type: 'INCREMENT' });
   };
 
   const decrementCount = () => {
-    dispatch({ type: 'decrement' });
+    dispatch({ type: 'DECREMENT' });
   };
 
   const handleChange = ({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
-    dispatch({ type: 'change-value', payload: Number(value) });
+    dispatch({ type: 'CHANGE_VALUE', payload: Number(value) });
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch({ type: 'add-value', payload: Number(state.addValue) });
+    dispatch({ type: 'ADD_VALUE', payload: Number(state.addValue) });
   };
 
   return (
