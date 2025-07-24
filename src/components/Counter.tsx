@@ -1,4 +1,5 @@
 import { useReducer, type ChangeEvent, type FC, type FormEvent } from 'react';
+import { produce } from 'immer';
 import Button from './Button';
 
 type Action = 'INCREMENT' | 'DECREMENT' | 'CHANGE_VALUE' | 'ADD_VALUE';
@@ -15,20 +16,25 @@ const reducer = (
 ) => {
   switch (action.type) {
     case 'INCREMENT':
-      return { ...state, count: state.count + 1 };
+      state.count = state.count + 1;
+      return;
     case 'DECREMENT':
-      return { ...state, count: state.count - 1 };
+      state.count = state.count - 1;
+      return;
     case 'CHANGE_VALUE':
-      return { ...state, addValue: action.payload! };
+      state.addValue = action.payload!;
+      return;
     case 'ADD_VALUE':
-      return { count: state.count + action.payload!, addValue: 0 };
+      state.count = state.count + action.payload!;
+      state.addValue = 0;
+      return;
     default:
-      return state;
+      return;
   }
 };
 
 const Counter: FC<{ initialCount?: number }> = ({ initialCount = 0 }) => {
-  const [state, dispatch] = useReducer(reducer, {
+  const [state, dispatch] = useReducer(produce(reducer), {
     count: initialCount,
     addValue: 0
   });
